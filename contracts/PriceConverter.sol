@@ -39,9 +39,9 @@ library PriceConverter {
   }
 
   function getUSDPriceInCoins(AggregatorV3Interface priceFeed, uint256 usd) internal view returns (uint256){
-        uint256 price = getPrice(priceFeed) / 1000000000000000000;
-        uint256 priceInCoins = 1000000000000000000 / price;
 
-        return priceInCoins*usd;
+        uint256 priceInCoins = 1000000000000000000 * 1000000000000000000 * usd / getPrice(priceFeed); 
+
+        return priceInCoins;
     }
 }

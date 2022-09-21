@@ -20,6 +20,8 @@ const RINKEBY_RPC_URL =
 const KOVAN_RPC_URL = process.env.KOVAN_RPC_URL || "https://eth-kovan.alchemyapi.io/v2/your-api-key"
 const POLYGON_MAINNET_RPC_URL =
     process.env.POLYGON_MAINNET_RPC_URL || "https://polygon-mainnet.alchemyapi.io/v2/your-api-key"
+const POLYGON_TEST_RPC_URL =
+    process.env.POLYGON_TEST_RPC_URL || "https://polygon-mainnet.alchemyapi.io/v2/your-api-key"
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x"
 // optional
 const MNEMONIC = process.env.MNEMONIC || "your mnemonic"
@@ -48,6 +50,11 @@ module.exports = {
             chainId: 4,
             blockConfirmations: 6,
         },
+        mumbai: {
+            url: POLYGON_TEST_RPC_URL,
+            accounts: [PRIVATE_KEY],
+            chainId: 80001,
+          }
     },
     etherscan: {
         // yarn hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
@@ -55,6 +62,7 @@ module.exports = {
             rinkeby: ETHERSCAN_API_KEY,
             kovan: ETHERSCAN_API_KEY,
             polygon: POLYGONSCAN_API_KEY,
+            polygonMumbai: POLYGONSCAN_API_KEY
         },
     },
     gasReporter: {

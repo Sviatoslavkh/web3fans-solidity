@@ -18,7 +18,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
     let priceFeed
-    const version = 1
+    const version = 2
 
     if (chainId == 31337) {
         priceFeed = await ethers.getContract("MockV3Aggregator")
@@ -111,7 +111,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
         }
 
-        if (chainId == 4) {
+        if (chainId == 4 || chainId == 80001) {
             log("Verifying...")
             await verify(mainContractAddress, [priceFeed, creatorsContractAdress, subscriptionsContractAddress, contentContractAddress, version])
             await verify(contentContractAddress, [creatorsContractAdress, subscriptionsContractAddress, version])
